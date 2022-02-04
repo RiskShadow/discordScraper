@@ -10,15 +10,19 @@ choice = input('Please Select Number: ')
 if choice == '1':
     scrape.scrape(input('Chat Link: '), 'chat-messages-' + input('Message ID: '))
 if choice == '2':
+    print('Loading...')
     f = open('url.txt', 'r').read().split('\n')
-    n = round(len(f)/8.)
-    output = [f[i:i + n] for i in range(0, len(f), n)]
+    res = []
+    [res.append(x) for x in f if x not in res]
+    n = round(len(res)/8.)
+    output = [res[i:i + n] for i in range(0, len(res), n)]
     ints = []
     startInt = 0
     for d in output:
         ints.append(startInt)
         startInt = startInt + len(d)
 
+    print('Starting...')
     process1 = multiprocessing.Process(target=download.download, args=(output[0],ints[0]))
     process2 = multiprocessing.Process(target=download.download, args=(output[1],ints[1]))
     process3 = multiprocessing.Process(target=download.download, args=(output[2],ints[2]))
