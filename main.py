@@ -8,7 +8,7 @@ print('1- Scrape\n2- Download\n')
 choice = input('Please Select Number: ')
 
 if choice == '1':
-    scrape.scrape(input('Chat Link: '), input('Message ID: '))
+    scrape.scrape(input('Chat Link: '), 'chat-messages-' + input('Message ID: '))
 if choice == '2':
     f = open('url.txt', 'r').read().split('\n')
     n = round(len(f)/8.)
